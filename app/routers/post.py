@@ -398,26 +398,7 @@ async def get_scheduler_stats(
         "stats": stats
     }
 
-@router.post("/admin/process-now")
-async def process_scheduled_now(
-    current_admin: CurrentAdmin,
-):
-    """
-    Admin only: Manually trigger processing of due posts
-    Example: POST /posts/admin/process-now
-    """
-    result = await manual_process_now()
-    
-    if not result["success"]:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=result.get("error", "Failed to process posts")
-        )
-    
-    return {
-        "message": f"Successfully processed {result['processed_count']} posts",
-        "processed_count": result["processed_count"]
-    }
+
 
 @router.get("/admin/overdue")
 async def get_overdue_posts(
