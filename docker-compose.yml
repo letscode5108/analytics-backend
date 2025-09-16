@@ -10,7 +10,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ./.env:/app/.env
+    - ./.env:/app/app/.env
     restart: unless-stopped
 
   db:
